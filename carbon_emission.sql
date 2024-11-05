@@ -7,19 +7,9 @@ FROM Carbon_Emission
 SELECT * 
 FROM Carbon_Emission
 WHERE CO2_emission_estimates IS NULL
-
-SELECT * 
-FROM Carbon_Emission
-WHERE Year IS NULL
-
-SELECT * 
-FROM Carbon_Emission
-WHERE Series IS NULL
-
-SELECT * 
-FROM Carbon_Emission
-WHERE Value IS NULL
-
+   OR Year IS NULL
+   OR Series IS NULL
+   OR Value IS NULL;
 
 
 SELECT DISTINCT Series
