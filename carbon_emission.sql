@@ -59,18 +59,18 @@ FROM perCapital
 
  
 
--- Carbon Emissions per capital in America
+-- Carbon Emissions per capital in India
 
 SELECT MIN(Value) as min_value, MAX(Value) as Max_value 
 FROM perCapital
-WHERE Country = 'United States of America'
---- The min value is 14.606 and the max value is 20.168
+WHERE Country = 'India'
+--- The min value is 0.3 and the max value is 1.614
 
 SELECT Year
 FROM perCapital
-WHERE Country = 'United States of America'
-AND Value IN (20.168, 14.606)
---- the year for the max value is 1975 and the year for the min value is 2017. 
+WHERE Country = 'India'
+AND Value IN (1.614, 0.3)
+--- the year for the min value is 1975 and the year for the max value is 2017. 
 
 
 ;WITH value1975 AS 
@@ -85,7 +85,7 @@ WHERE Year = 2017)
 SELECT DISTINCT perCapital.Country, ROUND((value2017.new_value - value1975.old_value)/value1975.old_value,2) AS changes 
 FROM 
 value1975
-INNER JOIN value2017 ON value1975.Country = value2017.Country
+INNER JOIN value2017 ON value1975.Country = value2017.Country --ensures only countries present in both year are in the data
 INNER JOIN perCapital ON value1975.Country = perCapital.Country
 ORDER BY changes DESC
  
